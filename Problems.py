@@ -40,7 +40,7 @@ multiples = sum(x for x in range(1000) if x % 3 == 0 or x % 5 == 0)
 #Problem 2 (5%) - Even Fibonacci Numbers - https://projecteuler.net/problem=2
 #Fibonacci: (start with 1 and 2) 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144
 
-# Recursively:
+# Recursively... ish:
 def fibonacciSeq(x):
     if x <= 2:
         return x
@@ -73,7 +73,9 @@ print(fibonacciSum(4000000))        # It works at lower levels but starts to tak
 
 
 
-#Problem 3 (5%) - Largest Prime Factor - https://projecteuler.net/problem=3
+# Problem 3 (5%) - Largest Prime Factor - https://projecteuler.net/problem=3
+
+# Iteratively + list
 def primeFactors(x):
     index = 2
     primes = []
@@ -85,7 +87,41 @@ def primeFactors(x):
             index += 1
     return primes       # This returns ALL factors, the maximum should be fairly easy to decipher
                         # however I could always just add max(primes) at the end there!
+# primeFactors(600851475143)
 
 
 
+
+
+# Problem 4 (5%) - Largest Palindrome Product - https://projecteuler.net/problem=4
+
+def palindrome2(n1, n2):
+    index = n2
+    num = []
+    palind = palindrome(n1, n2)
+    if palind != []:
+        num = palindrome(n1, n2)
+    else:
+        while palind == []:
+            index = index - 1
+            palind = palindrome(n1, index)
+            num = palind
+    return num
+
+def palindrome(n1, n2):
+    pals = []
+    while n1 > 899:
+        n = n1 * n2
+        x = [int(d) for d in str(n)]
+        y = x[::-1]
+        if y == x:
+            pals.append(x)
+            n1 =  n1 - 100
+        else:
+            n1 -= 1
+    return pals
+
+print(palindrome2(999, 999))        # SUPER messy answer, but it works! It even works on lower
+                                    # values like 2 digit numbers. Ill also be comming back to 
+                                    # this one to imrprove it :)
 
