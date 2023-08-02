@@ -121,7 +121,39 @@ def palindrome(n1, n2):
             n1 -= 1
     return pals
 
-print(palindrome2(999, 999))        # SUPER messy answer, but it works! It even works on lower
+palindrome2(999, 999)           # SUPER messy answer, but it works! It even works on lower
                                     # values like 2 digit numbers. Ill also be comming back to 
                                     # this one to imrprove it :)
 
+
+
+
+
+# Problem 5 (5%) - Smallest Multiple - https://projecteuler.net/problem=5
+# First try
+def smallestMultiple(x, y):
+    index1, index2, index3 = 1, list(range(x, y + 1)), 0
+    while index3 == 0:
+        print(index1)
+        if all(index1 % i == 0 for i in index2[::-1]):
+            index3 += 1
+            return index1
+        else:
+            index1 += 1
+    return index1
+
+smallestMultiple(1, 20)        # This algorithm works but takes way too long, about 6 and a half hours from my calculations
+
+
+
+
+
+# Second try
+def smallestMultiple():
+    index2 = [11, 13, 14, 16, 17, 18, 19, 20]       # Winowed down possible factors
+    for num in range(2520, 999999999, 2520):        # Tried finding a way to skip over numbers in a range, found out
+                                                    # about old python 2's xrange and figured out how to implement it    
+        print(num)
+        if all(num % i == 0 for i in index2[::-1]):
+            return num
+    return num
