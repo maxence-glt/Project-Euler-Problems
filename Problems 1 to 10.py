@@ -158,4 +158,25 @@ def smallestMultiple():
             return num
     return num
 
-# testing testing
+
+
+
+
+# Problem 6 (5%) - Sum Square Difference - https://projecteuler.net/problem=6
+# Solved using 2 nested generators so as improve coroutines and not run into the Space complexity from previous quesitons
+def smallest_multiple(x=100):
+    def sum_squares(x):
+        total = 0
+        for _ in range(0, x + 1):
+            yield total ** 2
+            total += 1
+
+    def square_sum(x):
+        total = 0
+        for _ in range(0, x + 1):
+            yield total
+            total += 1
+    sum(square_sum(100)) ** 2 - sum(sum_squares(100))
+
+
+
