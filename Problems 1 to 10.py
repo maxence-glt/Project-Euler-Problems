@@ -12,7 +12,7 @@ def sumMultiples(x, y):        #x and y are the multiples
             index += 1
     return total
 
-print(sumMultiples(3, 5))
+# print(sumMultiples(3, 5))
 
 
 # Recursively:
@@ -64,7 +64,7 @@ def fibonacciSum(x):
             return sum
         
 
-print(fibonacciSum(4000000))        # It works at lower levels but starts to take a long time above 50, so
+# print(fibonacciSum(4000000))        # It works at lower levels but starts to take a long time above 50, so
                                     # technically its a solution just not an optimal one.
 
 # I will come back to this one!
@@ -121,7 +121,7 @@ def palindrome(n1, n2):
             n1 -= 1
     return pals
 
-palindrome2(999, 999)           # SUPER messy answer, but it works! It even works on lower
+# palindrome2(999, 999)           # SUPER messy answer, but it works! It even works on lower
                                     # values like 2 digit numbers. Ill also be comming back to 
                                     # this one to imrprove it :)
 
@@ -142,7 +142,7 @@ def smallestMultiple(x, y):
             index1 += 1
     return index1
 
-smallestMultiple(1, 20)        # This algorithm works but takes way too long, about 6 and a half hours from my calculations
+# smallestMultiple(1, 20)        # This algorithm works but takes way too long, about 6 and a half hours from my calculations
 
 
 
@@ -170,13 +170,66 @@ def smallest_multiple(x=100):
         for _ in range(0, x + 1):
             yield total ** 2
             total += 1
-
     def square_sum(x):
         total = 0
         for _ in range(0, x + 1):
             yield total
             total += 1
-    sum(square_sum(100)) ** 2 - sum(sum_squares(100))
+    return sum(square_sum(x)) ** 2 - sum(sum_squares(x))
 
+
+
+
+
+# Problem 7 (5%) - 10001st Prime - https://projecteuler.net/problem=7
+def prime_index(x):
+    index, prime = 1, 2
+    while index <= x:
+        index += 1
+ # TODO make a list of used values to compare off future recursions
+
+
+
+
+
+ # Problem 8 (5%) - Largest Product in a Series - https://projecteuler.net/problem=8
+def greatest_product(series):
+    series_list = [int(x) for x in str(series)]
+    total_list = []
+    i = 0
+    for x in range(0, len(series_list) - 13):
+        total = 1
+        for y in range(x, x + 13):
+            print(range(x , x + 13))
+            total = total * series_list[y]
+        total_list.append(total)
+        i += 1
+    # print(total_list)
+    return max(total_list)
+
+
+
+
+
+# Problem 9 (5%) - Special Pythagorean Triplet - https://projecteuler.net/problem=9
+def pythag(a, b, c):
+    a, b, c = a**(1/2), b**(1/2), c**(1/2)
+    return a % 1 == 0 and b % 1 == 0 and c % 1 == 0
+        
+
+def special_pythag_triple():
+    pythags_list = []
+    total = 1
+    for a in range(3, 500):
+        for b in range (4, 500):
+            c = a*a + b*b
+            print(a, b, c**(1/2), a*a, b*b, c, pythag(a*a, b*b, c))
+            if pythag(a*a, b*b, c) and ((a + b + c**(1/2)) == 1000):
+                pythags_list.append([a, b, c**(1/2)])
+    print(pythags_list)
+    for x in pythags_list:
+        for y in x:
+            total = total * y
+        return total
 
 
