@@ -134,7 +134,6 @@ def palindrome(n1, n2):
 def smallestMultiple(x, y):
     index1, index2, index3 = 1, list(range(x, y + 1)), 0
     while index3 == 0:
-        print(index1)
         if all(index1 % i == 0 for i in index2[::-1]):
             index3 += 1
             return index1
@@ -153,7 +152,6 @@ def smallestMultiple():
     index2 = [11, 13, 14, 16, 17, 18, 19, 20]       # Winowed down possible factors
     for num in range(2520, 999999999, 2520):        # Tried finding a way to skip over numbers in a range, found out
                                                     # about old python 2's xrange and figured out how to implement it    
-        print(num)
         if all(num % i == 0 for i in index2[::-1]):
             return num
     return num
@@ -200,11 +198,9 @@ def greatest_product(series):
     for x in range(0, len(series_list) - 13):
         total = 1
         for y in range(x, x + 13):
-            print(range(x , x + 13))
             total = total * series_list[y]
         total_list.append(total)
         i += 1
-    # print(total_list)
     return max(total_list)
 
 
@@ -223,13 +219,31 @@ def special_pythag_triple():
     for a in range(3, 500):
         for b in range (4, 500):
             c = a*a + b*b
-            print(a, b, c**(1/2), a*a, b*b, c, pythag(a*a, b*b, c))
             if pythag(a*a, b*b, c) and ((a + b + c**(1/2)) == 1000):
                 pythags_list.append([a, b, c**(1/2)])
-    print(pythags_list)
     for x in pythags_list:
         for y in x:
             total = total * y
         return total
 
 
+
+
+
+# Problem 10 (5%) - Summation of Primes - https://projecteuler.net/problem=10
+list_primes = [2, 3, 5, 7]
+def sum_primes(total):
+    sum = 17
+    for x in range(10, total + 1):
+        if is_prime(x):
+            sum += x
+    return sum
+
+def is_prime(x):
+    for y in list_primes:
+        if x % y == 0: return False
+    print(x)
+    list_primes.append(x)
+    return True
+
+# print(sum_primes(2000000))
