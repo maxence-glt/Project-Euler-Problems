@@ -1,6 +1,5 @@
 # Problem 1 (5% difficulty) - Multiples of 3 and 5 - https://projecteuler.net/problem=1
 
-
 # Iteratively:
 def sumMultiples(x, y):        #x and y are the multiples
     total, index = 0, 0
@@ -180,12 +179,22 @@ def smallest_multiple(x=100):
 
 
 # Problem 7 (5%) - 10001st Prime - https://projecteuler.net/problem=7
-def prime_index(x):
-    index, prime = 1, 2
-    while index <= x:
-        index += 1
- # TODO make a list of used values to compare off future recursions
+list_primes = [2, 3, 5, 7, 11, 13]
+def tenthousandth_andfirst(range):
+    x = 14
+    while len(list_primes) != range:
+        prime(x)
+        x+=1
+    return list_primes[-1]
 
+def prime(x):
+    for y in list_primes:
+        if x % y == 0: return False
+    list_primes.append(x)
+    print(len(list_primes))
+    return True
+
+# print(tenthousandth_andfirst(10001))
 
 
 
@@ -231,8 +240,8 @@ def special_pythag_triple():
 
 
 # Problem 10 (5%) - Summation of Primes - https://projecteuler.net/problem=10
-list_primes = [2, 3, 5, 7]
-def sum_primes(total):
+list_primes2 = [2, 3, 5, 7]
+def sum_primes2(total):
     sum = 17
     for x in range(10, total + 1):
         if is_prime(x):
@@ -240,10 +249,10 @@ def sum_primes(total):
     return sum
 
 def is_prime(x):
-    for y in list_primes:
+    for y in list_primes2:
         if x % y == 0: return False
     print(x)
-    list_primes.append(x)
+    list_primes2.append(x)
     return True
 
 # print(sum_primes(2000000))
