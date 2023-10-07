@@ -1,4 +1,5 @@
-# Problem 11 - Largest Product in a Grid - https://projecteuler.net/problem=11
+import math
+# Problem 11 (5%) - Largest Product in a Grid - https://projecteuler.net/problem=11
 
 array = [
     [8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8],
@@ -23,13 +24,92 @@ array = [
     [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ]
 
-def largest_prod(array):
-    products = []
-    for y in array:
-        for x in y:
-            products += [array[0][0] + array[0][1] + array[0][2] + array[0][3]]
-            products += [array[0][0] + array[1][0] + array[2][0] + array[3][0]]
-            products += [array[0][0] + array[1][1] + array[2][2] + array[3][3]]
-            if x
-    return max(products)
+# def largest_prod(array):
+#     products = []
+#     for y in array:
+#         for x in y:
+#             products += [array[0][0] + array[0][1] + array[0][2] + array[0][3]]
+#             products += [array[0][0] + array[1][0] + array[2][0] + array[3][0]]
+#             products += [array[0][0] + array[1][1] + array[2][2] + array[3][3]]
+#             if x
+#     return max(products)
 
+
+
+
+
+# Problem 12 (5%) - Highly divisible triangular number - https://projecteuler.net/problem=12
+def triangle_numbers():
+    total = 1
+    index = 1
+    while True:
+        print(total)
+        if divisors(total) > 500:
+            return total
+        index = index + 1
+        total += index
+
+# figured out how to use a log(O) time complexity!! (abuot 272% faster than my original solution)
+def divisors(x):
+    num, total, call_count = 2, 2, 1
+    index = x - 1
+    while index > num + 1:
+        call_count += 1
+        if math.sqrt(x) == num:
+            total += 1
+            index = math.sqrt(x)
+        if x % num == 0 and num != math.sqrt(x):
+            total += 2
+            index = x // num
+        num += 1
+    return total, call_count
+# 76576500
+
+
+
+
+
+# Problem 14 (5%) - Longest Collatz sequence - https://projecteuler.net/problem=14
+def longest_collatz_seq():
+    index = 4
+    longest = [3, 8]
+    while index < 1000000:
+        print(index)
+        collatz = collatz_seq(index)
+        if collatz > longest[1]:
+            longest[0] = index
+            longest[1] = collatz
+            index += 1
+        else: index += 1
+    return longest
+
+def collatz_seq(x):
+    total = 1
+    while x != 1:
+        total += 1
+        if x % 2 == 0:
+            x = x/2
+        else: x = (3 * x) + 1
+    return total
+# 837799, with 525
+
+
+
+
+
+# Problem 15 (5%) - Lattice paths - https://projecteuler.net/problem=15
+# classic recursion problem I did twice in Berkeley's CS61a
+def lattice_paths(x, y):
+    if x == 1 or y == 1:
+        return 2
+    else:
+        return lattice_paths(x-1, y) + lattice_paths(x, y-1)
+
+
+
+
+
+# Problem 16 (5%) - Power Digit Sum - https://projecteuler.net/problem=16
+total = 0
+for x in str(2 ** 1000):
+    total += int(x)
