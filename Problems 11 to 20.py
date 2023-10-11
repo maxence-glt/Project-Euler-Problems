@@ -39,7 +39,7 @@ array = [
 
 
 # Problem 12 (5%) - Highly divisible triangular number - https://projecteuler.net/problem=12
-def triangle_numbers():
+def euler_12():
     total = 1
     index = 1
     while True:
@@ -62,11 +62,14 @@ def divisors(x):
             total += 2
             index = x // num
         num += 1
-    return total, call_count
+    return total
 # 76576500
 
 
 
+
+
+# Problem 13
 
 
 # Problem 14 (5%) - Longest Collatz sequence - https://projecteuler.net/problem=14
@@ -99,11 +102,19 @@ def collatz_seq(x):
 
 # Problem 15 (5%) - Lattice paths - https://projecteuler.net/problem=15
 # classic recursion problem I did twice in Berkeley's CS61a
+# implemented memoization to make the function extremely fast
+paths = {}
 def lattice_paths(x, y):
-    if x == 1 or y == 1:
-        return 2
+    if x == 0 or y == 0:
+        return 1
+    if (x, y) in paths:
+        return paths[(x, y)]
     else:
+        paths[(x, y)] = lattice_paths(x-1, y) + lattice_paths(x, y-1)
         return lattice_paths(x-1, y) + lattice_paths(x, y-1)
+# 137846528820
+
+
 
 
 
